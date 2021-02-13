@@ -1,13 +1,25 @@
+
+
 const photo = document.querySelectorAll('.tab .photo img');
 const tab = document.querySelectorAll('.tab');
 const sliderModal = document.querySelector('.slider-modal')
 
+let position = 0;
+let width = 600;
 
-photo.forEach((item, i) => {
+const conteiner = document.querySelector('.slider__conteiner')
+const track = document.querySelector('.slider__track')
+  imageToSlider()
+const image = document.querySelectorAll('.slider__track img')
+const btnPrev = document.querySelector('.btn-prev')
+const btnNext = document.querySelector('.btn-next')
+
+
+photo.forEach(item => {
    item.addEventListener('click', () => {
       sliderModal.style.visibility = 'visible';
       sliderModal.style.opacity = '1';
-      document.body.style.overflow = "hidden"; 
+      document.body.style.overflow = "hidden";
 
    })
 })
@@ -20,24 +32,14 @@ sliderModal.addEventListener('click', (e) => {
 
    }
 })
-
-
-let position = 0;
-let width = 600;
-
-const conteiner = document.querySelector('.slider__conteiner');
-const track = document.querySelector('.slider__track');
-const image = document.querySelectorAll('.slider__item');
-const btnPrev = document.querySelector('.btn-prev');
-const btnNext = document.querySelector('.btn-next');
-
+  
+      
 function init() {
-   console.log('resize');
    width = conteiner.clientWidth;
-   track.style.width = width * image.length + 'px';
+   track.style.width = valuePx(width * image.length);
    image.forEach(item => {
       item.style.width = width + 'px';
-      item.style.height = 'auto';
+      item.style.maxHeight = '800px';
       rollSlider();
    })
 }
@@ -62,12 +64,22 @@ btnPrev.addEventListener('click', () => {
 })
 
 function rollSlider() {
-   track.style.transform = 'translate(-' + position * width + 'px)';
+   track.style.transform = valueTranslate(position * width);
 }
 
+function valuePx(val) {
+   return val + 'px'
+}
 
+function valueTranslate(val) {
+   return `translate(-${valuePx(val)})`
+}
 
-
-
-
-
+function imageToSlider() {
+   let imageHtml = '';
+   photo.forEach(item => {
+      imageHtml += item.outerHTML;
+   })
+   track.insertAdjacentHTML("beforeend", imageHtml);
+   
+}
