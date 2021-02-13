@@ -3,7 +3,7 @@ const tabsBtn = document.querySelectorAll('.gallery__link')
 
 
 function hideTabContent() {
-   content.forEach((item) => {
+   content.forEach(item => {
       item.style.opacity = "0";
       item.style.visibility = 'hidden';
 
@@ -18,8 +18,7 @@ function showTabContent(i = 0) {
    content[i].style.opacity = "1";
 
    tabsBtn[i].classList.add('after-link');
-
-
+   
 }
 
 hideTabContent();
@@ -28,9 +27,10 @@ showTabContent();
 
 tabsBtn.forEach((item, i) => {
 
-   item.addEventListener('click', (e) => {
+   item.addEventListener('click', () => {
       hideTabContent();
       showTabContent(i);
+      
    })
 })
 

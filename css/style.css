@@ -217,6 +217,7 @@ body {
    padding: 7px 0;
    color: #2f2f2f;
    transition: all 0.2s;
+   cursor: pointer;
 }
 
 .gallery__link:hover {
@@ -445,7 +446,7 @@ body {
    transition: all 0.5s;
 }
 
-.slider__item {
+.slider__track img {
    display: block;
    object-fit: cover;
 
